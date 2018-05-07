@@ -1,10 +1,17 @@
 const express = require("express");
 const morgan = require("morgan");
 //const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 const app = express();
 
 const productRoutes = require("./api/routes/products");
 const ordersRoutes = require("./api/routes/orders");
+
+mongoose.connect(
+  "mongodb+srv:admin:" +
+    process.env.MONGO_ATLAS_PW +
+    "@expressapp-nr0ft.mongodb.net/test"
+);
 
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
